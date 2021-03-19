@@ -12,7 +12,7 @@ async function testGoogleTitle() {
     // 1. go to google.com
     await driver.get('http://www.google.com')
 
-    // 2. find the search bar by name. (You can also find by Id, or Classes)
+    // 2. find the search bar by name. (You can also findElement by Id, or className
     let googleSearchBar = await driver.findElement(webdriver.By.name('q'))
     
     // 3. type in "webdriver" and wait 1 sec
@@ -26,6 +26,10 @@ async function testGoogleTitle() {
     // 5. grab the title and compare it with the EXPECTED title
     let pageTitle = await driver.getTitle()
     if(pageTitle === 'webdriver - Google Search') {
+        // 6. execute a little front-end javascript alert
+        await driver.executeScript(`alert("success");`)
+        // 7. wait 3 seconds before ending the test
+        await driver.sleep(3000)
         console.log('*****Test passed******');
     } else {
         console.log('Test failed :(:(:(:(:(:(');
